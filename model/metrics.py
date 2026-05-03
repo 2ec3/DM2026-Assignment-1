@@ -82,3 +82,18 @@ def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation'):
     plt.show()
 
     return metrics
+
+def evaluate_classifier(y_true, y_pred, title='Model Evaluation'):
+    y_true = np.asarray(y_true).ravel().astype(int)
+    y_pred = np.asarray(y_pred).ravel().astype(int)
+
+    metrics = {
+        'Accuracy': accuracy_score(y_true, y_pred),
+        'F1-score': f1_score(y_true, y_pred, average='weighted')
+    }
+
+    print(title)
+    for name, value in metrics.items():
+        print(f'{name:<10}: {value:.4f}')
+
+    return metrics
